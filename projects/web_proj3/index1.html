@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User - Culturaio</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="index1.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <span>Culturaio</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#mission-section">About</a></li>
+            <li><a href="#featured-artists">Artists</a></li>
+            <li><a href="#events-section">Events</a></li>
+            <li><a href="#marketplace-section">Marketplace</a></li>
+        </ul>
+    </nav>
+
+    <!-- WELCOME SECTION -->
+    <section id="welcome">
+        <div class="logo-container">
+            <img src="pictures/logo.jpg" alt="Culturaio Logo" class="logo-image">
+            <div class="welcome-text">
+                <h1>Welcome to Culturaio</h1>
+                <p class="tagline">Connecting Artists with the Community</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="mission-section">
+        <div class="about-image-container">
+            <img src="pictures/about_image.webp" alt="About Image" class="about-image">
+        </div>
+        <h2 class="mission-heading">Discover Our Mission</h2>
+        <div class="mission-text">
+            <p>
+                We aim to promote and support local artists by providing a dynamic platform where they can showcase their creativity, share unique perspectives, and gain visibility in a wider community. Our mission is to bridge the gap between talented artists and art enthusiasts, creating a space where creativity thrives and cultural heritage is preserved. Whether it's visual arts, music, dance, theater, or traditional crafts, we believe that every form of artistic expression deserves recognition and appreciation. Through collaborative events, exhibitions, and digital showcases, we empower artists to tell their stories and connect with those who value and support their work. Join us in celebrating diverse talents and contributing to the vibrant cultural landscape that defines our communities.
+            </p>
+        </div>
+    </section>
+    
+
+    <!-- FEATURED ARTISTS SECTION -->
+    <h2 class="featured-artists-heading">Meet Our Featured Artists</h2>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search by artist name...">
+        <button onclick="searchArtist()">Search</button>
+    </div>
+    <section id="featured-artists">
+        <div class="artist-card">
+            <div class="artist-section" id="maadhvan-goyal">
+                <img src="pictures/maadhavn.jpeg" alt="Maadhvan Goyal" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Maadhvan Goyal</a></h3>
+                    <p>Painter</p>
+                    <p>Maadhvan Goyal is a renowned painter known for blending traditional techniques with contemporary themes...</p>
+                </div>
+            </div>
+        </div>
+        <div class="artist-card">
+            <div class="artist-section" id="tanishka-bahl">
+                <img src="pictures/musician.jpeg" alt="Tanishka Bahl" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Tanishka Bahl</a></h3>
+                    <p>Musician & Performer</p>
+                    <p>Tanishka Bahl is a dynamic musician and performer who brings a unique fusion of classical and modern music...</p>
+                </div>
+            </div>
+        </div>
+        <div class="artist-card">
+            <div class="artist-section" id="noel-alexander">
+                <img src="pictures/dancer.jpeg" alt="Noel Alexander" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Noel Alexander</a></h3>
+                    <p>Choreographer</p>
+                    <p>Noel Alexander is a dynamic musician and performer who brings a unique fusion of classical and modern music...</p>
+                </div>
+            </div>
+        </div>
+        <div class="artist-card">
+            <div class="artist-section" id="anuj-rehan">
+                <img src="pictures/anujrehan.jpg" alt="Anuj Rehan" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Anuj rehan</a></h3>
+                    <p>Musician</p>
+                    <p>Anuj rehan is a dynamic musician and performer who brings a unique fusion of classical and modern music...</p>
+                </div>
+            </div>
+        </div>
+        <div class="artist-card">
+            <div class="artist-section" id="sonakshi-awana">
+                <img src="pictures/sonakshi.webp" alt="Sonakshi Awana" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Sonakshi Awana</a></h3>
+                    <p>Decor Blogger</p>
+                    <p>Sonakshi Awana is a decor blogger who turns dreams into reality through DIY magic.</p>
+                </div>
+            </div>
+        </div>
+        <div class="artist-card">
+            <div class="artist-section" id="ardhi-kalyani">
+                <img src="pictures/ardhi.webp" alt="Ardhi Kalyani" class="artist-image">
+                <div class="artist-details">
+                    <h3><a href="artist-detail.html" class="artist-link">Ardhi Kalyani</a></h3>
+                    <p>DIY Artist</p>
+                    <p>Kalyani has a talent for making everyday items into stunning pieces of decor without making things complicated.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- EVENTS SECTION -->
+    <section id="events-section">
+        <h2 class="featured-artists-heading">Join Us At Upcoming Cultural Events</h2>
+        <div class="event-section">
+            <div class="event-box">
+                <div class="event-title">Local Art Exhibit</div>
+                <p>Date: September 15, 2024</p>
+                <p>Time: 10:00 AM</p>
+                <p>Location: City Art Gallery</p>
+                <p>Ticket Price: Rs 200.00</p>
+                <button class="join-button" onclick="joinEvent('Local Art Exhibit', 200)">Join</button>
+            </div>
+    
+            <div class="event-box">
+                <div class="event-title">Cultural Music Festival</div>
+                <p>Date: October 10, 2024</p>
+                <p>Time: 6:00 PM</p>
+                <p>Location: Central Park</p>
+                <p>Ticket Price: Rs 500.00</p>
+                <button class="join-button" onclick="joinEvent('Cultural Music Festival', 500)">Join</button>
+            </div>
+    
+            <div class="event-box">
+                <div class="event-title">Crafts and Hobbies Expo</div>
+                <p>Date: December 1, 2024</p>
+                <p>Time: 11:00 AM</p>
+                <p>Location: Downtown Convention Center</p>
+                <p>Ticket Price: Rs 250.00</p>
+                <button class="join-button" onclick="joinEvent('Crafts and Hobbies Expo', 250)">Join</button>
+            </div>
+    
+            <div class="event-box">
+                <div class="event-title">International Film Festival</div>
+                <p>Date: January 20, 2025</p>
+                <p>Time: 5:00 PM</p>
+                <p>Location: Grand Theater</p>
+                <p>Ticket Price: Rs 400.00</p>
+                <button class="join-button" onclick="joinEvent('International Film Festival', 400)">Join</button>
+            </div>
+
+            <div class="event-box">
+                <div class="event-title">Nature Photography Exhibition</div>
+                <p>Date: February 5, 2025</p>
+                <p>Time: 9:00 AM</p>
+                <p>Location: Nature Art Gallery</p>
+                <p>Ticket Price: Rs 300.00</p>
+                <button class="join-button" onclick="joinEvent('Nature Photography Exhibition', 300)">Join</button>
+            </div>
+            
+            <div class="event-box">
+                <div class="event-title">Traditional Dance Showcase</div>
+                <p>Date: March 15, 2025</p>
+                <p>Time: 7:00 PM</p>
+                <p>Location: Community Center Auditorium</p>
+                <p>Ticket Price: Rs 150.00</p>
+                <button class="join-button" onclick="joinEvent('Traditional Dance Showcase', 150)">Join</button>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- MARKETPLACE SECTION -->
+    <div id="marketplace-section">
+        <h2 class="featured-artists-heading">Explore Our Marketplace</h2>
+        <div class="marketplace-container">
+            <div class="product-box">
+                <img src="pictures/handmade_jewel.jpg" alt="Handcrafted Necklace" class="product-image">
+                <h3>Handcrafted Necklace</h3>
+                <p>Beautifully crafted necklace made by local artisans.</p>
+                <p>Rs 150.00</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="product-box">
+                <img src="pictures/painting.jpg" alt="Original Painting" class="product-image">
+                <h3>Original Painting</h3>
+                <p>Discover unique and original painting from talented artists.</p>
+                <p>Rs 500.00</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="product-box">
+                <img src="pictures/handmade_craft.jpg" alt="Handmade Crafts" class="product-image">
+                <h3>Handmade Crafts</h3>
+                <p>Handmade crafts and decorations for your home.</p>
+                <p>Rs 250.00</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="product-box">
+                <img src="pictures/wall_hanging.webp" alt="Wall Hangings" class="product-image">
+                <h3>Wall Hangings</h3>
+                <p>Handmade wall hangings for your pretty walls.</p>
+                <p>Rs 110.00</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="product-box">
+                <img src="pictures/beaded_bracelet.jpg" alt="Beaded Bracelet" class="product-image">
+                <h3>Beaded Bracelet</h3>
+                <p>Beautifully crafted beaded bracelet made by local artisans.</p>
+                <p>Rs 40.00</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <!-- Add more product boxes as needed -->
+        </div>
+    </div>
+    
+    
+
+    <!-- GET IN TOUCH SECTION -->
+    <section id="get-in-touch">
+        <h2 class="contact-heading">Get in Touch</h2>
+        <p>If you have any questions or want to learn more, feel free to reach out!</p>
+        <p>Email: <a href="mailto:info@culturaio.com">info@Culturaio.com</a></p>
+    </section>
+    
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Culturaio. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+<script>
+    function searchArtist() {
+        const searchInput = document.getElementById('search-input').value.toLowerCase();
+        const artistIds = ['andreas-wannerstedt', 'tanishka-bahl', 'noel-alexander']; // List of artist IDs
+
+        let found = false;
+        artistIds.forEach(id => {
+            const artistElement = document.getElementById(id);
+            if (artistElement && id.includes(searchInput.replace(/\s+/g, '-').toLowerCase())) {
+                artistElement.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the artist
+                found = true;
+            }
+        });
+
+        if (!found) {
+            alert('Artist not found!'); // Alert if artist is not found
+        }
+    }
+    function registerForWorkshop(workshopTitle) {
+    const confirmation = confirm(`Do you want to register for "${workshopTitle}"?`);
+    if (confirmation) {
+        // Here you can implement the logic to handle the registration and pass generation
+        alert(`You have successfully registered for "${workshopTitle}". A pass will be sent to your email.`);
+        
+        // Simulating pass generation (create a dummy pass file)
+        const passData = `Pass for ${workshopTitle}\nThank you for registering!`;
+        const blob = new Blob([passData], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${workshopTitle.replace(/\s+/g, '_')}_pass.txt`; // File name
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url); // Clean up
+    }
+}
+
+</script>
+

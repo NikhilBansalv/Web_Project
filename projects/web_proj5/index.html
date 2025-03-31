@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced CV Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <h1>Advanced CV Generator</h1>
+      <p>Create your professional CV in just a few steps</p>
+    </header>
+    <div class="form-container">
+      <form id="cvForm">
+        <!-- Step 1: Personal Details -->
+        <fieldset class="form-step active">
+          <legend>Personal Details</legend>
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="phone">Phone:</label>
+          <input type="text" id="phone" name="phone" required>
+          <button type="button" class="next-step">Next</button>
+        </fieldset>
+        <!-- Step 2: Address & Education -->
+        <fieldset class="form-step">
+          <legend>Address & Education</legend>
+          <label for="address">Address:</label>
+          <textarea id="address" name="address" required></textarea>
+          <label for="education">Education:</label>
+          <input type="text" id="education" name="education" required>
+          <div class="btn-group">
+            <button type="button" class="prev-step">Previous</button>
+            <button type="button" class="next-step">Next</button>
+          </div>
+        </fieldset>
+        <!-- Step 3: Experience -->
+        <fieldset class="form-step">
+          <legend>Experience</legend>
+          <label for="experience">Work Experience:</label>
+          <textarea id="experience" name="experience" required></textarea>
+          <div class="btn-group">
+            <button type="button" class="prev-step">Previous</button>
+            <button type="button" class="next-step">Next</button>
+          </div>
+        </fieldset>
+        <!-- Step 4: Skills & Finalize -->
+        <fieldset class="form-step">
+          <legend>Skills</legend>
+          <label for="skills">Skills (comma separated):</label>
+          <input type="text" id="skills" name="skills" required>
+          <div class="btn-group">
+            <button type="button" class="prev-step">Previous</button>
+            <button type="submit" class="generate-cv">Generate CV</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div id="cv-container" class="cv-container hidden">
+      <h2>Your Generated CV</h2>
+      <div id="cv-preview" class="cv-preview">
+        <div class="cv-header">
+          <h2 id="cv-name">Your Name</h2>
+          <p id="cv-email">Email: example@mail.com</p>
+          <p id="cv-phone">Phone: 000-000-0000</p>
+        </div>
+        <div class="cv-body">
+          <p><strong>Age:</strong> <span id="cv-age">0</span></p>
+          <p><strong>Address:</strong> <span id="cv-address">Your Address</span></p>
+          <p><strong>Education:</strong> <span id="cv-education">Your Education</span></p>
+          <p><strong>Experience:</strong> <span id="cv-experience">Your Experience</span></p>
+          <p><strong>Skills:</strong> <span id="cv-skills">Your Skills</span></p>
+        </div>
+      </div>
+      <button id="printBtn" class="print-btn">Print / Download CV</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

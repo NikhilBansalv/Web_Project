@@ -1,0 +1,136 @@
+/* General Centering of Page Content */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header h1 {
+    color: #6a5acd; /* Lavender color */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Artist Detail Section */
+.artist-detail-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.artist-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px; /* Limit the width for readability */
+    margin-bottom: 30px;
+}
+
+.artist-detail-image {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.artist-detail-info {
+    text-align: center;
+}
+
+.artist-detail-info h2 {
+    color: black; /* Black for the subtitle */
+}
+
+.artist-detail-info p {
+    margin: 10px 0;
+    color: #666666; /* Neutral grey for paragraph text */
+}
+
+/* Workshops Section */
+.workshops-section {
+    width: 100%;
+    max-width: 600px; /* Limit the width for workshops */
+    text-align: center;
+}
+
+.workshop-item {
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0; /* Space between workshops */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+}
+
+.workshop-item h4 {
+    color: #6a5acd; /* Lavender for workshop title */
+}
+
+.workshop-item p {
+    color: #666666; /* Grey for workshop details */
+    margin: 10px 0;
+}
+
+/* Centered Register Button */
+button.register-button {
+    background-color: #6a5acd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button.register-button:hover {
+    background-color: #5c4d99;
+}
+
+/* Modal Styles (Unchanged) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-button.cancel {
+    background-color: #f44336;
+}

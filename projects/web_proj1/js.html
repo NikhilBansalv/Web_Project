@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Section</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">WebDev Course</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html">CSS</a></li>
+                <li><a href="js.html" class="active">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>JavaScript Basics</h1>
+        <p>Make your web pages interactive with JavaScript.</p>
+
+        <h2>1. Print to Console</h2>
+        <pre><code>console.log("Hello, World!");
+        </code></pre>
+
+        <h2>2. Variables and Data Types</h2>
+        <pre><code>let name = "John";
+let age = 25;
+        </code></pre>
+
+        <h2>3. Functions in JS</h2>
+        <pre><code>function greet(name) {
+    return "Hello, " + name + "!";
+}
+console.log(greet("John"));
+        </code></pre>
+
+        <h2>4. Array Manipulation</h2>
+        <pre><code>let fruits = ["Apple", "Banana", "Cherry"];
+fruits.push("Mango");
+        </code></pre>
+
+        <h2>5. Looping through Arrays</h2>
+        <pre><code>for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+        </code></pre>
+
+        <h2>6. Event Handling</h2>
+        <pre><code>document.getElementById("btn").addEventListener("click", () => {
+    alert("Button Clicked!");
+});
+        </code></pre>
+
+        <h2>7. Manipulating DOM</h2>
+        <pre><code>document.getElementById("demo").innerHTML = "Updated Content!";
+        </code></pre>
+
+        <h2>8. Conditional Statements</h2>
+        <pre><code>if (age > 18) {
+    console.log("You are an adult.");
+} else {
+    console.log("You are a minor.");
+}
+        </code></pre>
+
+        <h2>9. Working with Objects</h2>
+        <pre><code>let person = {
+    name: "Alice",
+    age: 28
+};
+console.log(person.name);
+        </code></pre>
+
+        <h2>10. Set Timeout Function</h2>
+        <pre><code>setTimeout(() => {
+    console.log("This will appear after 2 seconds.");
+}, 2000);
+        </code></pre>
+
+        <h2>11. Array Filter Method</h2>
+        <pre><code>let numbers = [10, 20, 30, 40];
+let filtered = numbers.filter(num => num > 20);
+console.log(filtered);
+        </code></pre>
+
+        <h2>12. String Manipulation</h2>
+        <pre><code>let text = "Hello JavaScript!";
+console.log(text.toUpperCase());
+        </code></pre>
+
+        <h2>13. Error Handling</h2>
+        <pre><code>try {
+    throw new Error("Something went wrong!");
+} catch (error) {
+    console.error(error.message);
+}
+        </code></pre>
+
+        <h2>14. Async and Await</h2>
+        <pre><code>async function fetchData() {
+    let response = await fetch("https://api.example.com/data");
+    let data = await response.json();
+    console.log(data);
+}
+fetchData();
+        </code></pre>
+
+        <h2>15. Working with Local Storage</h2>
+        <pre><code>localStorage.setItem("username", "JohnDoe");
+console.log(localStorage.getItem("username"));
+        </code></pre>
+
+        <a href="index.html" class="btn">Back to Home</a>
+        <button onclick="completed()" class="btn">Complete the Course!</button>
+    </div>
+</body>
+</html>

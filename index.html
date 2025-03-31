@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikhil Bansal | Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <h1 class="logo gradient-text">Nikhil Bansal</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#assignments">Assignments</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="home-section">
+    <canvas id="particles"></canvas>
+    <div class="content">
+      <h1 data-aos="fade-up">Hi, I'm <span class="gradient-text">Nikhil Bansal</span> 👋</h1>
+      <div class="typewriter" data-aos="fade-up" data-aos-delay="200">
+        <span id="typed-text"></span>
+      </div>
+      <div class="cta-buttons" data-aos="fade-up" data-aos-delay="400">
+        <a href="#contact" class="btn pulse">Get in Touch</a>
+        <a href="Nikhil_resume.pdf" target="_blank" download class="btn btn-outline">Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <h2 data-aos="fade-up">About Me</h2>
+    <div class="about-content" data-aos="fade-up">
+      <img src="images/new.jpg" alt="Profile Picture" class="profile-pic" />
+      <p>
+        I’m a data science and machine learning enthusiast with practical experience in developing solutions that leverage data effectively. 
+        I’m currently pursuing a degree in Computer Science at VIT Chennai, and outside of my studies, I enjoy playing basketball to stay active.
+      </p>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="education-section">
+    <h2 data-aos="fade-up">Education</h2>
+    <div class="education-container">
+      <!-- Education Card 1 -->
+      <div class="education-card" data-aos="zoom-in">
+        <h3>Vellore Institute of Technology, Chennai</h3>
+        <p class="duration">2023 - 2027</p>
+        <p class="institution">CGPA: <span style="color: white;">8.91</span></p>
+        <p class="details">Computer Science engineering specialized in Cyber Physical Systems.</p>
+      </div>
+      <!-- Education Card 2 -->
+      <div class="education-card" data-aos="zoom-in">
+        <h3>Velammal Vidhyashram, Surapet</h3>
+        <p class="duration">2021 - 2023</p>
+        <p class="institution">12th: <span style="color: white;">94.6%</span></p>
+        <p class="institution">10th: <span style="color: white;">92%</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <h2 data-aos="fade-up">Projects</h2>
+    <div class="projects-container">
+      <!-- Project Card 1 -->
+      <div class="project-card" data-aos="flip-left">
+        <h3>Web Dev Course</h3>
+        <p>An interactive platform for learning HTML, CSS, and JS with live code snippets!</p>
+        <div class="tech-stack">
+            <span>JavaScript</span>
+            <span>CSS</span>
+            <span>HTML</span>
+        </div>
+        <a href="projects/web_proj1/index.html" target="_blank" class="btn project-btn">Explore →</a>
+      </div>
+      <!-- Project Card 2 -->
+      <div class="project-card" data-aos="flip-left">
+        <h3>Mini Games Portal</h3>
+        <p>Dive into our Mini Games Portal for bite-sized, addictive challenges that pack a punch!</p>
+        <div class="tech-stack">
+          <span>JavaScript</span>
+          <span>CSS</span>
+          <span>HTML</span>
+        </div>
+        <a href="projects/web_proj2/index.html" target="_blank" class="btn project-btn">Explore →</a>
+      </div>
+      <!-- Project Card 3 -->
+      <div class="project-card" data-aos="flip-left">
+        <h3>Culturaio.io</h3>
+        <p>Culturaio.io unites local artists on one platform to showcase portfolios, promote workshops and events, and sell their handcrafted creations.</p>
+        <div class="tech-stack">
+          <span>JavaScript</span>
+          <span>CSS</span>
+          <span>HTML</span>
+        </div>
+        <a href="projects/web_proj3/index1.html" target="_blank" class="btn project-btn">Explore →</a>
+      </div>
+      <!-- Project Card 4 -->
+      <div class="project-card" data-aos="flip-left">
+        <h3>AWS Playbook</h3>
+        <p>AWS learning platform where users can learn and practice about AWS.</p>
+        <div class="tech-stack">
+          <span>JavaScript</span>
+          <span>CSS</span>
+          <span>HTML</span>
+        </div>
+        <a href="projects/web_proj4/home.html" target="_blank" class="btn project-btn">Explore →</a>
+      </div>
+      <!-- Project Card 5 -->
+      <div class="project-card" data-aos="flip-left">
+        <h3>Advanced CV Generator</h3>
+        <p>Generate your CV in 5 mins!</p>
+        <div class="tech-stack">
+            <span>JavaScript</span>
+            <span>CSS</span>
+            <span>HTML</span>
+        </div>
+        <a href="projects/web_proj5/index.html" target="_blank" class="btn project-btn">Explore →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assignments Section -->
+  <section id="assignments" class="assignments-section">
+    <h2 data-aos="fade-up">Assignments</h2>
+    <div class="assignments-container" data-aos="fade-up">
+      <a href="assignments/23BPS1039_Web_Exercise-1.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="100">Assignment 1</a>
+      <a href="assignments/23BPS1039_Web_Exercise-2.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="200">Assignment 2</a>
+      <a href="assignments/23BPS1039_Web_Exercise-3.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="300">Assignment 3</a>
+      <a href="assignments/23BPS1039_Web_Exercise-4.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="400">Assignment 4</a>
+      <a href="assignments/23BPS1039_Web_Exercise-5.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="500">Assignment 5</a>
+      <a href="assignments/23BPS1039_Web_Exercise-6.pdf" target="_blank" class="btn assignment-btn" data-aos="fade-up" data-aos-delay="600">Assignment 6</a>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <h2 data-aos="fade-up">Experience</h2>
+    <div class="experience-container">
+      <!-- Experience Card 1 -->
+      <div class="experience-card" data-aos="zoom-in">
+        <h3>Data Science Member</h3>
+        <p class="company">IEEE RAS</p>
+        <p class="duration">2023-Present</p>
+        <ul class="achievements">
+          <li>Developed ML models for predictions</li>
+          <li>Working Committee Member for Rascade Event</li>
+        </ul>
+      </div>
+      <!-- Experience Card 2 -->
+      <div class="experience-card" data-aos="zoom-in">
+        <h3>Technical Team Member</h3>
+        <p class="company">IEEE Photonics</p>
+        <p class="duration">2023-Present</p>
+        <ul class="achievements">
+          <li>Conducted technical events</li>
+          <li>Assisted in marketing multiple events</li>
+        </ul>
+      </div>
+      <!-- Experience Card 3 -->
+      <div class="experience-card" data-aos="zoom-in">
+        <h3>Vibrance</h3>
+        <p class="company">VIT Chennai</p>
+        <p class="duration">2025</p>
+        <ul class="achievements">
+          <li>Served as Registration Committee member</li>
+          <li>Coordinated participant entries for proshows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <h2 data-aos="fade-up">Let's Connect</h2>
+    <div class="contact-container" data-aos="fade-up">
+      <form id="contact-form">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <textarea rows="5" placeholder="Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <a href="mailto:nikhilbansal536@gmail.com" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          nikhilbansal536@gmail.com
+        </a>
+        <div class="social-links">
+          <a href="https://github.com/NikhilBansalv" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/nikhil-bansal-a5a66728b/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Nikhil Bansal. All rights reserved.</p>
+      <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

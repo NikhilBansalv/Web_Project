@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Detail - Maadhvan Goyal</title>
+    <link rel="stylesheet" href="artist-details.css">
+</head>
+<body>
+
+    <header>
+        <h1>Maadhvan Goyal</h1>
+    </header>
+
+    <section class="artist-detail-section">
+        <div class="artist-detail-container">
+            <img src="pictures/maadhavn.jpeg" alt="Maadhvan Goyal" class="artist-detail-image">
+            <div class="artist-detail-info">
+                <h2>Painter</h2>
+                <p>Maadhvan Goyal is a renowned painter known for blending traditional techniques with contemporary themes. His work is inspired by the natural world and often explores the relationship between humanity and nature.</p>
+            </div>
+        </div>
+
+        <section class="workshops-section">
+            <h3>Upcoming Workshops by Maadhvan Goyal</h3>
+
+            <div class="workshop-item">
+                <h4>Workshop Title: Nature in Sculpture</h4>
+                <p>Date: October 20, 2024</p>
+                <p>Location: City Art Gallery</p>
+                <p>Time: 10:00 AM</p>
+                <p>Price: Rs 500.00</p>
+                <button class="register-button" onclick="openModal()">Register</button>
+            </div>
+
+            <div class="workshop-item">
+                <h4>Workshop Title: Creative Sculpture Techniques</h4>
+                <p>Date: November 15, 2024</p>
+                <p>Location: Riverfront Art Center</p>
+                <p>Time: 10:00 AM</p>
+                <p>Price: Rs 700.00</p>
+                <button class="register-button" onclick="openModal()">Register</button>
+            </div>
+        </section>
+    </section>
+
+    <!-- Modal for Payment Confirmation -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Confirm Payment</div>
+            <div class="modal-body">
+                <p>You are about to register for this workshop.</p>
+                <p>Price: Rs 500.00</p>
+                <p>Would you like to confirm the payment?</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button confirm" onclick="confirmRegistration()">Confirm</button>
+                <button class="modal-button cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("paymentModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("paymentModal").style.display = "none";
+        }
+
+        // Function to handle payment confirmation
+        function confirmRegistration() {
+            closeModal();
+            alert("Payment confirmed! Your pass will be generated.");
+            generatePass();
+        }
+
+        // Function to generate a pass (dummy pass creation)
+        function generatePass() {
+            const passContent = "Workshop Pass\n\nWorkshop: Nature in Sculpture\nDate: October 20, 2024\nLocation: City Art Gallery\nTime: 10:00 AM";
+            const passBlob = new Blob([passContent], { type: "text/plain" });
+            const passUrl = URL.createObjectURL(passBlob);
+
+            const a = document.createElement("a");
+            a.href = passUrl;
+            a.download = "workshop-pass.txt"; // Dummy pass file
+            a.click();
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("paymentModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe Jump Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        canvas {
+            background: linear-gradient(to bottom, #2c3e50, #3498db);
+            border: 3px solid #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+        #scoreBoard {
+            position: fixed;
+            top: 20px;
+            color: #ecf0f1;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreBoard">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas" width="600" height="300"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreElement = document.getElementById("score");
+
+        // Game variables
+        const gravity = 0.5;
+        let ball = { 
+            x: 50, 
+            y: 150, 
+            radius: 15, 
+            velocityY: 0, 
+            color: getRandomColor(),
+            trail: []
+        };
+        
+        let obstacles = [];
+        let particles = [];
+        let score = 0;
+        let gameOver = false;
+        let obstacleSpeed = 3;
+        let groundHeight = 20;
+        let lastObstacleTime = Date.now();
+
+        function getRandomColor() {
+            return `hsl(${Math.random() * 360}, 70%, 50%)`;
+        }
+
+        function createObstacle() {
+            const height = 30 + Math.random() * 40;
+            const minGap = 150;
+            
+            obstacles.push({
+                x: canvas.width,
+                y: canvas.height - height - groundHeight,
+                width: 25,
+                height: height,
+                color: getRandomColor(),
+                passed: false
+            });
+        }
+
+        function createParticles(x, y) {
+            for (let i = 0; i < 15; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    radius: Math.random() * 3 + 2,
+                    color: ball.color,
+                    velocityX: (Math.random() - 0.5) * 5,
+                    velocityY: (Math.random() - 1) * 5,
+                    alpha: 1
+                });
+            }
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                if (gameOver) {
+                    resetGame();
+                    return;
+                }
+                if (ball.y >= canvas.height - ball.radius - groundHeight) {
+                    ball.velocityY = -12;
+                    ball.color = getRandomColor();
+                    createParticles(ball.x, ball.y);
+                }
+            }
+        });
+
+        function resetGame() {
+            ball = { 
+                x: 50, 
+                y: 150, 
+                radius: 15, 
+                velocityY: 0, 
+                color: getRandomColor(),
+                trail: []
+            };
+            obstacles = [];
+            particles = [];
+            score = 0;
+            obstacleSpeed = 3;
+            gameOver = false;
+            scoreElement.textContent = score;
+            lastObstacleTime = Date.now();
+        }
+
+        function update() {
+            if (gameOver) return;
+            
+            // Ball physics
+            ball.velocityY += gravity;
+            ball.y += ball.velocityY;
+            
+            // Store ball position for trail
+            ball.trail.push({x: ball.x, y: ball.y});
+            if (ball.trail.length > 10) ball.trail.shift();
+
+            // Ground collision
+            if (ball.y > canvas.height - ball.radius - groundHeight) {
+                ball.y = canvas.height - ball.radius - groundHeight;
+                ball.velocityY = 0;
+            }
+            
+            // Update obstacles
+            obstacles.forEach(obs => {
+                obs.x -= obstacleSpeed;
+                
+                // Pipe collision detection
+                const collision = (
+                    ball.x + ball.radius > obs.x &&
+                    ball.x - ball.radius < obs.x + obs.width &&
+                    ball.y + ball.radius > obs.y
+                );
+
+                if (collision) {
+                    gameOver = true;
+                    createParticles(ball.x, ball.y);
+                }
+
+                // Score counting
+                if (!obs.passed && ball.x > obs.x + obs.width) {
+                    obs.passed = true;
+                    score += 5;
+                    scoreElement.textContent = score;
+                }
+            });
+
+            // Remove off-screen obstacles
+            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+            
+            // Add new obstacles
+            if (Date.now() - lastObstacleTime > 1500) {
+                createObstacle();
+                lastObstacleTime = Date.now();
+            }
+            
+            // Update particles
+            particles.forEach(p => {
+                p.x += p.velocityX;
+                p.y += p.velocityY;
+                p.alpha -= 0.03;
+                p.velocityY += 0.1;
+            });
+            particles = particles.filter(p => p.alpha > 0);
+
+            // Increase difficulty
+            obstacleSpeed = 3 + Math.floor(score / 500);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw ground
+            ctx.fillStyle = '#2ecc71';
+            ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+
+            // Draw ball trail
+            ball.trail.forEach((pos, index) => {
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, ball.radius * (0.8 - index/15), 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${hexToRgb(ball.color)}, ${0.3 - index/40})`;
+                ctx.fill();
+            });
+
+            // Draw ball
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = ball.color;
+            ctx.shadowColor = ball.color;
+            ctx.shadowBlur = 15;
+            ctx.fill();
+
+            // Draw pipes
+            obstacles.forEach(obs => {
+                ctx.fillStyle = obs.color;
+                ctx.shadowColor = obs.color;
+                ctx.shadowBlur = 10;
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+                ctx.fillStyle = '#333';
+                ctx.fillRect(obs.x - 5, obs.y - 20, obs.width + 10, 20);
+            });
+
+            // Draw particles
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${hexToRgb(p.color)}, ${p.alpha})`;
+                ctx.fill();
+            });
+
+            // Reset shadow
+            ctx.shadowColor = 'transparent';
+
+            // Game over screen
+            if (gameOver) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ecf0f1';
+                ctx.font = '40px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Game Over!', canvas.width/2, canvas.height/2 - 20);
+                ctx.font = '20px Arial';
+                ctx.fillText('Press SPACE to restart', canvas.width/2, canvas.height/2 + 30);
+            }
+        }
+
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.substring(1), 16);
+            return `${(bigint >> 16) & 255},${(bigint >> 8) & 255},${bigint & 255}`;
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start game
+        gameLoop();
+    </script>
+</body>
+</html>

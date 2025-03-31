@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your AWS Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #232f3e, #1b1f24);
+            color: #d0d0d0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.8em;
+            color: #ffd700;
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #ff7f50;
+            font-size: 1.8em;
+            margin: 20px 0 40px;
+        }
+        .game-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .game-button {
+            text-decoration: none;
+            color: #1b1f24;
+            background-color: #ff9900;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .game-button:hover {
+            background-color: #ffd700;
+            color: #232f3e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Choose Your AWS Game</h1>
+    <h3>Test Your Skills with Fun Games!</h3>
+
+    <div class="game-options">
+        <a href="hangman.html" class="game-button">Hangman Game</a>
+        <a href="matchinggame.html" class="game-button">Matching Game</a>
+        <a href="quiz.html" class="game-button">AWS Quiz</a>
+    </div>
+</div>
+
+</body>
+</html>

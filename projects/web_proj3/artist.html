@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist - Culturaio</title>
+  <link rel="stylesheet" href="artist.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      
+      <span>Culturaio</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="artist.html">Home</a></li>
+      <li><a href="#portfolio-section">Portfolio</a></li>
+      <li><a href="#workshop-section">Workshops</a></li>
+      <li><a href="#product-section">Products</a></li>
+    </ul>
+  </nav>
+
+  <!-- WELCOME SECTION -->
+  <section id="welcome">
+    <div class="logo-container"> <!-- New container for logo and welcome text -->
+        <img src="pictures/logo.jpg" alt="Culturaio Logo" class="logo-image">
+        <h1 class="logo">Welcome to Culturaio</h1>
+        <p class="tagline">Connecting Artists with the Community</p>
+    </div>
+  </section>
+  
+
+  <!-- ADD PORTFOLIO SECTION -->
+  <section id="portfolio-section">
+    <div class="section-container">
+      <div class="section__text">
+        <h2>Add Your Portfolio</h2>
+        <p>If you'd like to share your journey with the community, add your portfolio by clicking below.</p>
+        <button class="btn btn-color-1" onclick="showPortfolioForm()">Add Portfolio</button>
+      </div>
+    </div>
+
+    <!-- Portfolio Form (Initially Hidden) -->
+    <div id="portfolio-form" style="display:none;">
+      <form action="/submit_portfolio" method="POST" enctype="multipart/form-data">
+        <label for="profile-picture">Upload Profile Picture:</label>
+        <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required><br><br>
+        
+        <label for="story">Your Journey:</label><br>
+        <textarea id="story" name="story" rows="5" cols="50" placeholder="Tell us about your journey..." required></textarea><br><br>
+        
+        <button type="submit" class="btn btn-color-1">Submit Portfolio</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ADD WORKSHOP SECTION -->
+  <section id="workshop-section">
+    <div class="section-container">
+      <div class="section__text">
+        <h2>Add a Workshop</h2>
+        <p>If you'd like to conduct a workshop, you can share the details here.</p>
+        <button class="btn btn-color-1" onclick="showWorkshopForm()">Add Workshop</button>
+      </div>
+    </div>
+
+    <!-- Workshop Form (Initially Hidden) -->
+    <div id="workshop-form" style="display:none;">
+      <form action="/submit_workshop" method="POST">
+        <label for="workshop-title">Workshop Title:</label>
+        <input type="text" id="workshop-title" name="workshop-title" required><br><br>
+
+        <label for="workshop-details">Workshop Details:</label><br>
+        <textarea id="workshop-details" name="workshop-details" rows="5" cols="50" placeholder="Provide details about the workshop..." required></textarea><br><br>
+
+        <button type="submit" class="btn btn-color-1">Submit Workshop</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ADD PRODUCTS SECTION -->
+  <section id="product-section">
+    <div class="section-container">
+      <div class="section__text">
+        <h2>Add Products</h2>
+        <p>If you'd like to sell your products, you can add them here.</p>
+        <button class="btn btn-color-1" onclick="showProductForm()">Add Product</button>
+      </div>
+    </div>
+
+    <!-- Product Form (Initially Hidden) -->
+    <div id="product-form" style="display:none;">
+      <form action="/submit_product" method="POST" enctype="multipart/form-data">
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" name="product-name" required><br><br>
+        
+        <label for="product-image">Upload Product Image:</label>
+        <input type="file" id="product-image" name="product-image" accept="image/*" required><br><br>
+
+        <label for="product-price">Price:</label>
+        <input type="number" id="product-price" name="product-price" required><br><br>
+
+        <button type="submit" class="btn btn-color-1">Submit Product</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Culturaio. All Rights Reserved.</p>
+  </footer>
+
+  <!-- SCRIPTS TO SHOW/HIDE FORMS -->
+  <script>
+    function showPortfolioForm() {
+      document.getElementById('portfolio-form').style.display = 'block';
+    }
+    function showWorkshopForm() {
+      document.getElementById('workshop-form').style.display = 'block';
+    }
+    function showProductForm() {
+      document.getElementById('product-form').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

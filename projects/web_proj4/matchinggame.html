@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Cloud Services Matching Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #232f3e;
+            color: #ff9900;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #ff9900;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 150px);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #3b4046;
+            color: #ff9900;
+            width: 150px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px; /* Increased font size */
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .card.matched {
+            background-color: #ff9900;
+            color: #3b4046;
+            cursor: default;
+        }
+        #score, #timer {
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+        #reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #ff9900;
+            color: #3b4046;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #reset-button:hover {
+            background-color: #e68a00;
+        }
+        #power-ups {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .power-up {
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #ff9900;
+            color: #3b4046;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .power-up:hover {
+            background-color: #e68a00;
+        }
+        .power-up.disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        #star {
+            display: none; /* Hidden by default */
+            font-size: 50px;
+            color: gold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>AWS Cloud Services Matching Game</h1>
+<div id="timer">Time: 0s</div>
+<div id="score">Score: 0</div>
+<div id="power-ups">
+    <button id="double-points" class="power-up">Double Points</button>
+    <button id="time-freeze" class="power-up">Time Freeze</button>
+    <button id="reveal-pair" class="power-up">Reveal a Pair</button>
+</div>
+<div id="game-board"></div>
+<button id="reset-button">Reset Game</button>
+<div id="star">⭐ Congratulations! ⭐</div>
+
+<script>
+    const cardsData = [
+        { name: "EC2", description: "Compute capacity in the cloud" },
+        { name: "S3", description: "Object storage service" },
+        { name: "RDS", description: "Relational database service" },
+        { name: "IAM", description: "Access management for AWS resources" }
+    ];
+
+    let cards = [...cardsData.map(card => ({ ...card, type: 'name', id: Math.random() })), 
+                 ...cardsData.map(card => ({ ...card, type: 'description', id: Math.random() }))];
+    cards = cards.sort(() => Math.random() - 0.5);
+
+    let score = 0;
+    let startTime;
+    let timerInterval;
+    let firstCard = null;
+    let secondCard = null;
+    let waitingForReset = false;
+    let isDoublePointsActive = false;
+    let isTimeFrozen = false;
+    let powerUpsUsed = {
+        doublePoints: false,
+        timeFreeze: false,
+        revealPair: false
+    };
+
+    const gameBoard = document.getElementById('game-board');
+    const scoreDisplay = document.getElementById('score');
+    const timerDisplay = document.getElementById('timer');
+    const starDisplay = document.getElementById('star');
+
+    function setupBoard() {
+        gameBoard.innerHTML = '';
+        cards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.dataset.id = card.id;
+            cardElement.dataset.name = card.name;
+            cardElement.dataset.description = card.description;
+            cardElement.dataset.type = card.type;
+            cardElement.addEventListener('click', flipCard);
+            gameBoard.appendChild(cardElement);
+        });
+        startTimer();
+        resetPowerUps();
+        starDisplay.style.display = 'none'; // Hide the star when setting up the board
+    }
+
+    function resetPowerUps() {
+        powerUpsUsed = {
+            doublePoints: false,
+            timeFreeze: false,
+            revealPair: false
+        };
+        document.querySelectorAll('.power-up').forEach(button => {
+            button.classList.remove('disabled');
+        });
+    }
+
+    function flipCard(event) {
+        if (waitingForReset || event.target.classList.contains('matched')) return;
+
+        const clickedCard = event.target;
+        clickedCard.textContent = clickedCard.dataset.type === 'name' ? clickedCard.dataset.name : clickedCard.dataset.description;
+        clickedCard.classList.add('flipped');
+
+        if (!firstCard) {
+            firstCard = clickedCard;
+        } else if (!secondCard) {
+            secondCard = clickedCard;
+            checkForMatch();
+        }
+    }
+
+    function checkForMatch() {
+        const isMatch = firstCard.dataset.name === secondCard.dataset.name &&
+                        firstCard.dataset.type !== secondCard.dataset.type;
+
+        if (isMatch) {
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            increaseScore();
+            resetCards();
+            checkGameEnd();
+        } else {
+            waitingForReset = true;
+            setTimeout(resetCards, 1000);
+        }
+    }
+
+    function resetCards() {
+        if (firstCard) firstCard.textContent = "";
+        if (secondCard) secondCard.textContent = "";
+        firstCard = null;
+        secondCard = null;
+        waitingForReset = false;
+    }
+
+    function increaseScore() {
+        const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        const timeBonus = elapsedTime < 30 ? (isDoublePointsActive ? 6 : 3) : elapsedTime < 60 ? (isDoublePointsActive ? 4 : 2) : (isDoublePointsActive ? 2 : 1);
+        score += 10 * timeBonus;
+        scoreDisplay.textContent = `Score: ${score}`;
+    }
+
+    function checkGameEnd() {
+        const allMatched = Array.from(document.querySelectorAll('.card')).every(card => card.classList.contains('matched'));
+        if (allMatched) {
+            clearInterval(timerInterval);
+            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+            if (elapsedTime < 30) {
+                starDisplay.style.display = 'block'; // Show the star if completed within 30 seconds
+            }
+            setTimeout(() => {
+                alert(`Game Over! Final Score: ${score}, Time Taken: ${elapsedTime}s`);
+            }, 300);
+        }
+    }
+
+    function startTimer() {
+        startTime = Date.now();
+        timerInterval = setInterval(() => {
+            const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+            if (!isTimeFrozen) {
+                timerDisplay.textContent = `Time: ${elapsedTime}s`;
+            }
+        }, 1000);
+    }
+
+    function activateDoublePoints() {
+        if (powerUpsUsed.doublePoints) return;
+        isDoublePointsActive = true;
+        powerUpsUsed.doublePoints = true;
+        document.getElementById('double-points').classList.add('disabled');
+        setTimeout(() => {
+            isDoublePointsActive = false;
+        }, 15000); // Active for 15 seconds
+    }
+
+    function activateTimeFreeze() {
+        if (powerUpsUsed.timeFreeze) return;
+        isTimeFrozen = true;
+        powerUpsUsed.timeFreeze = true;
+        document.getElementById('time-freeze').classList.add('disabled');
+        setTimeout(() => {
+            isTimeFrozen = false;
+        }, 5000); // Freeze for 5 seconds
+    }
+
+    function revealPair() {
+        if (powerUpsUsed.revealPair) return;
+        const unmatchedCards = Array.from(document.querySelectorAll('.card')).filter(card => !card.classList.contains('matched'));
+        if (unmatchedCards.length < 2) return; // Not enough unmatched cards to reveal
+
+        const [firstUnmatched, secondUnmatched] = [unmatchedCards[0], unmatchedCards[1]];
+        firstUnmatched.textContent = firstUnmatched.dataset.type === 'name' ? firstUnmatched.dataset.name : firstUnmatched.dataset.description;
+        secondUnmatched.textContent = secondUnmatched.dataset.type === 'name' ? secondUnmatched.dataset.name : secondUnmatched.dataset.description;
+
+        firstUnmatched.classList.add('flipped');
+        secondUnmatched.classList.add('flipped');
+        powerUpsUsed.revealPair = true;
+        document.getElementById('reveal-pair').classList.add('disabled');
+
+        setTimeout(() => {
+            resetCards();
+        }, 1000); // Hide again after 1 second
+    }
+
+    document.getElementById('double-points').addEventListener('click', activateDoublePoints);
+    document.getElementById('time-freeze').addEventListener('click', activateTimeFreeze);
+    document.getElementById('reveal-pair').addEventListener('click', revealPair);
+    document.getElementById('reset-button').addEventListener('click', () => {
+        clearInterval(timerInterval);
+        score = 0;
+        scoreDisplay.textContent = `Score: ${score}`;
+        setupBoard();
+    });
+
+    setupBoard();
+</script>
+
+</body>
+</html>

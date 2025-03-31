@@ -1,0 +1,172 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Light background for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6e6fa; /* Lavender background */
+    padding: 15px 30px;
+}
+
+.tagline {
+    font-size: 1.2em; /* Slightly larger font size for visibility */
+    color: #6a5acd; /* Dark slate blue for consistency */
+    text-align: center; /* Center the tagline */
+    margin-top: 10px; /* Space above the tagline */
+}
+
+/* Logo and Welcome Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Padding for spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin: 0 auto; /* Center the container */
+    width: 100%; /* Adjust width based on content */
+    flex-direction: column; /* Stack logo and text vertically */
+    text-align: center; /* Center text */
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em; /* Reduced logo size */
+    font-weight: bold;
+    color: #6a5acd; /* Dark slate blue for text */
+    margin-left: 10px; /* Space between the image and text */
+}
+
+.logo-image {
+    width: 200px; /* Adjust width as needed for the logo */
+    height: auto; /* Maintains aspect ratio */
+    margin-right: 10px; /* Space between the logo and text */
+    border-radius: 10%;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #6a5acd; /* Dark slate blue for links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #9370db; /* Medium purple on hover */
+}
+
+/* Welcome Section */
+#welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the welcome section */
+    padding: 30px;
+    background: linear-gradient(to right, #e6e6fa, #d8bfd8); /* Lavender gradient */
+    color: #6a5acd; /* Dark slate blue for text */
+}
+
+#welcome .section-container {
+    display: flex;
+    align-items: center;
+}
+
+#welcome h1 {
+    font-size: 2.2em; /* Slightly smaller font */
+    margin: 0;
+}
+
+#welcome p {
+    font-size: 1.1em; /* Slightly smaller font */
+}
+
+/* Section Styles */
+.section-container {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px; /* Rounded corners for sections */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.section__text {
+    text-align: center;
+}
+
+h2 {
+    color: #6a5acd; /* Dark slate blue for headings */
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #555; /* Slightly darker text for readability */
+}
+
+/* Buttons */
+.btn {
+    background-color: #6a5acd; /* Dark slate blue button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #5c4d99; /* Darker shade on hover */
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Space between form elements */
+}
+
+label {
+    font-weight: bold;
+    color: #333; /* Darker label color */
+}
+
+input[type="text"], input[type="number"], textarea {
+    width: 80%; /* Wider input fields */
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #e6e6fa; /* Lavender background */
+    color: #6a5acd; /* Dark slate blue for text */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

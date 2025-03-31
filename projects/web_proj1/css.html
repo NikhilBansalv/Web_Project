@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Section</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">WebDev Course</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="html.html">HTML</a></li>
+                <li><a href="css.html" class="active">CSS</a></li>
+                <li><a href="js.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>CSS Basics</h1>
+        <p>Style your web pages with CSS.</p>
+
+        <h2>1. Basic Text Styling</h2>
+        <pre><code>h1 {
+    color: #333;
+    text-align: center;
+}
+        </code></pre>
+
+        <h2>2. Changing Background Color</h2>
+        <pre><code>body {
+    background-color: #f4f4f4;
+}
+        </code></pre>
+
+        <h2>3. Adding Borders</h2>
+        <pre><code>div {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+        </code></pre>
+
+        <h2>4. Box Model Concept</h2>
+        <pre><code>.box {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #4CAF50;
+    margin: 10px auto;
+}
+        </code></pre>
+
+        <h2>5. Using Flexbox</h2>
+        <pre><code>.container {
+    display: flex;
+    justify-content: space-between;
+}
+        </code></pre>
+
+        <h2>6. Grid Layout</h2>
+        <pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+}
+        </code></pre>
+
+        <h2>7. CSS Hover Effects</h2>
+        <pre><code>button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+        </code></pre>
+
+        <h2>8. Pseudo-elements</h2>
+        <pre><code>p::before {
+    content: "Note: ";
+    font-weight: bold;
+}
+        </code></pre>
+
+        <h2>9. CSS Animations</h2>
+        <pre><code>@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+        </code></pre>
+
+        <h2>10. Media Queries for Responsiveness</h2>
+        <pre><code>@media (max-width: 768px) {
+    body {
+        background-color: lightblue;
+    }
+}
+        </code></pre>
+
+        <h2>11. Button Styling</h2>
+        <pre><code>button {
+    padding: 10px 20px;
+    background-color: #ff6347;
+    border-radius: 5px;
+}
+        </code></pre>
+
+        <h2>12. CSS Transitions</h2>
+        <pre><code>a {
+    transition: color 0.3s ease;
+}
+        </code></pre>
+
+        <h2>13. Creating Responsive Images</h2>
+        <pre><code>img {
+    width: 100%;
+    height: auto;
+}
+        </code></pre>
+
+        <h2>14. Adding Shadows</h2>
+        <pre><code>.box {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+        </code></pre>
+
+        <h2>15. Styling Tables</h2>
+        <pre><code>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+        </code></pre>
+
+        <a href="index.html" class="btn">Back to Home</a>
+        <a href="js.html" class="btn">Next section!</a>
+    </div>
+</body>
+</html>

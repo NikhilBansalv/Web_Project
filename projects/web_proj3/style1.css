@@ -1,0 +1,321 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6e6fa; /* Lavender background */
+    padding: 15px 30px;
+}
+
+.nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #6a5acd; /* Dark slate blue for links */
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    color: #9370db; /* Medium purple on hover */
+}
+
+/* Welcome Section */
+h1{
+    font-size: 30px;
+}
+#welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    background: linear-gradient(to right, #e6e6fa, #d8bfd8); /* Lavender gradient */
+    color: #6a5acd;
+}
+.tagline {
+    font-size: 1.5em; /* Slightly larger font size for visibility */
+    color: #6a5acd; /* Dark slate blue for consistency */
+    text-align: center; /* Center the tagline */
+    margin-top: 10px; /* Space above the tagline */
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Padding for spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin: 0 auto; /* Center the container */
+    width: 100%; /* Adjust width based on content */
+    flex-direction: column; /* Stack logo and text vertically */
+    text-align: center; /* Center text */
+}
+
+.logo {
+    font-size: 1.8em; /* Reduced logo size */
+    font-weight: bold;
+    color: #6a5acd; /* Dark slate blue for text */
+    margin-left: 10px; /* Space between the image and text */
+}
+
+.logo-image {
+    width: 350px;
+    height: auto;
+    margin-top: 2%;
+    margin-right: 10px;
+    border-radius: 5%;
+}
+
+/* About Section */
+#mission-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content */
+    justify-content: center;
+    padding: 40px; /* Add padding for spacing */
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.about-image-container {
+    margin-bottom: 20px; /* Space below the image */
+}
+
+.about-image {
+    width: 100%; /* Ensure the image is responsive */
+    max-width: 300px; /* Limit the maximum width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: rounded corners */
+}
+
+.mission-heading {
+    margin: 20px 0; /* Space above and below the heading */
+    text-align: center; /* Center the heading */
+    font-size: 2em; /* Make the heading larger */
+    color: #6a5acd; /* Dark slate blue for consistency */
+}
+
+.mission-text {
+    max-width: 800px; /* Limit the width of the text for readability */
+    text-align: center; /* Center the text */
+    line-height: 1.6; /* Improve readability by increasing line height */
+    padding: 0 20px; /* Padding on sides for a cleaner look */
+    color: #555; /* Slightly darker text for better contrast */
+}
+
+
+
+/* Featured Artists Section */
+#featured-artists {
+    padding: 30px;
+}
+.featured-artists-heading {
+    text-align: center; /* Center the text */
+    margin: 40px 0; /* Add some top and bottom margin for spacing */
+    font-size: 30px; /* Adjust font size as needed */
+    font-weight: bold; /* Make it bold if desired */
+}
+.artist-card {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff; /* White background */
+}
+
+.artist-section {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+    margin: 20px 20px; /* Add some margin around each artist */
+    padding: 10px;
+    background-color: #fff; /* White background for each section */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.artist-image {
+    width: 100px; /* Adjust width as needed */
+    height: auto;
+    margin-right: 20px; /* Space between image and text */
+}
+
+.artist-details {
+    flex: 1; /* Allow the text section to grow and fill space */
+}
+
+
+h2 {
+    margin: 20px 0 10px 20px; /* Adds margin to the top, bottom, and left */
+    /* Adjusts the heading margin for spacing */
+    color: #6a5acd; /* Dark slate blue for headings */
+    font-size: 25px;
+}
+.search-container {
+    display: flex;
+    justify-content: center; /* Center the search bar */
+    margin-top: 20px; /* Space above the search bar */
+}
+
+.search-bar {
+    width: 60%; /* Width of the search input */
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+    font-size: 1em; /* Font size */
+}
+
+.search-btn {
+    background-color: #6a5acd; /* Dark slate blue button color */
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Adjust padding */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Space between input and button */
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #5c4d99; /* Darker shade on hover */
+}
+
+/* Events Section */
+#events-section {
+    padding: 30px;
+}
+
+.event-section {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line */
+    justify-content: space-between; /* Even spacing between boxes */
+    margin: 20px 0; /* Space around the section */
+}
+
+.event-box {
+    flex: 1 1 calc(30% - 20px); /* Each box will take up 30% of the row minus some margin */
+    margin: 10px; /* Space between boxes */
+    padding: 20px; /* Inner padding */
+    border: 1px solid #ddd; /* Optional: border around each box */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    background-color: #fff; /* White background for boxes */
+}
+
+
+.event-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.join-button {
+    margin-top: 10px; /* Space above the button */
+}
+
+/* Marketplace Section */
+#marketplace-section {
+    padding: 30px;
+}
+
+.marketplace-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Space out items evenly */
+}
+
+.product-box {
+    background-color: white; /* White background for each product box */
+    border: 1px solid #ddd; /* Light border for the boxes */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding for spacing */
+    width: calc(15% - 20px); /* 5 items in a row with margin */
+    margin: 10px 0; /* Space above and below each box */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center the text inside the boxes */
+}
+
+/* Adjust the button styles if needed */
+.btn {
+    background-color: #6a5acd; /* Dark slate blue button color */
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Adjust padding */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #5c4d99; /* Darker shade on hover */
+}
+
+.product-image {
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners for the images */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .product-box {
+        width: calc(25% - 20px); /* 4 items in a row for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-box {
+        width: calc(33.33% - 20px); /* 3 items in a row for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-box {
+        width: calc(100% - 20px); /* 1 item in a row for mobile */
+    }
+}
+
+
+/* Contact Section */
+#get-in-touch {
+    text-align: center; /* Center the text */
+    padding: 40px; /* Add padding for spacing */
+    background-color: #f1f1f1; /* Light background for contrast */
+}
+
+.contact-heading {
+    font-size: 2em; /* Make the heading larger */
+    margin-bottom: 20px; /* Space below the heading */
+    color: #6a5acd; /* Dark slate blue for consistency */
+}
+
+#get-in-touch p {
+    font-size: 1.2em; /* Increase the size of the paragraph text */
+    margin: 10px 0; /* Space above and below each paragraph */
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #e6e6fa; /* Lavender background */
+}
+
+

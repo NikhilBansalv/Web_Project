@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tic Tac Toe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .theme-switcher {
+            margin: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .score-item {
+            padding: 0.5rem 2rem;
+            border-radius: 5px;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 2rem auto;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: transparent;
+        }
+
+        .cell:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .cell.x {
+            color: var(--x-color);
+            text-shadow: 0 0 15px var(--x-color);
+        }
+
+        .cell.o {
+            color: var(--o-color);
+            text-shadow: 0 0 15px var(--o-color);
+        }
+
+        .winning-cell {
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px currentColor;
+            }
+            to {
+                box-shadow: 0 0 20px currentColor;
+            }
+        }
+
+        .reset-btn {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem 4rem;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            display: none;
+            animation: popIn 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes popIn {
+            from {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Themes */
+        .theme-neon {
+            --x-color: #4CAF50;
+            --o-color: #2196F3;
+            --accent: #e91e63;
+            --bg-color: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+        }
+
+        .theme-classic {
+            --x-color: #ff4444;
+            --o-color: #4444ff;
+            --accent: #ffd700;
+            --bg-color: linear-gradient(45deg, #2c3e50, #3498db);
+        }
+
+        .theme-dark {
+            --x-color: #9C27B0;
+            --o-color: #FF9800;
+            --accent: #00BCD4;
+            --bg-color: linear-gradient(45deg, #0d0d0d, #1a1a1a);
+        }
+
+        body {
+            background: var(--bg-color);
+        }
+
+        .reset-btn, .theme-switcher, .score-item {
+            background-color: var(--accent);
+        }
+    </style>
+</head>
+<body class="theme-neon">
+    <button class="theme-switcher" onclick="switchTheme()">Switch Theme</button>
+    
+    <div class="container">
+        <div class="score-board">
+            <div class="score-item" id="x-score">X: 0</div>
+            <div class="score-item" id="o-score">O: 0</div>
+        </div>
+
+        <div class="game-board" id="board"></div>
+        <button class="reset-btn" onclick="resetGame()">Reset Game</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <script>
+        let currentPlayer = 'X';
+        let gameBoard = ['', '', '', '', '', '', '', '', ''];
+        let gameActive = true;
+        let scores = { X: 0, O: 0 };
+        const winCombos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+        let currentTheme = 0;
+        const themes = ['theme-neon', 'theme-classic', 'theme-dark'];
+
+        function initBoard() {
+            const board = document.getElementById('board');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.setAttribute('data-index', i);
+                cell.addEventListener('click', () => handleCellClick(i));
+                board.appendChild(cell);
+            }
+        }
+
+        function handleCellClick(index) {
+            if (!gameActive || gameBoard[index] !== '') return;
+
+            gameBoard[index] = currentPlayer;
+            const cell = document.querySelector(`[data-index="${index}"]`);
+            cell.classList.add(currentPlayer.toLowerCase());
+            cell.textContent = currentPlayer;
+            
+            playSound('click');
+            
+            if (checkWin()) {
+                handleWin();
+            } else if (gameBoard.every(cell => cell !== '')) {
+                handleDraw();
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+        function checkWin() {
+            return winCombos.some(combo => {
+                if (combo.every(index => gameBoard[index] === currentPlayer)) {
+                    combo.forEach(index => {
+                        document.querySelector(`[data-index="${index}"]`)
+                            .classList.add('winning-cell');
+                    });
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        function handleWin() {
+            playSound('win');
+            gameActive = false;
+            scores[currentPlayer]++;
+            updateScores();
+            showMessage(`${currentPlayer} Wins!`);
+        }
+
+        function handleDraw() {
+            playSound('draw');
+            gameActive = false;
+            showMessage("It's a Draw!");
+        }
+
+        function updateScores() {
+            document.getElementById('x-score').textContent = `X: ${scores.X}`;
+            document.getElementById('o-score').textContent = `O: ${scores.O}`;
+        }
+
+        function showMessage(text) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 2000);
+        }
+
+        function resetGame() {
+            gameBoard = ['', '', '', '', '', '', '', '', ''];
+            gameActive = true;
+            currentPlayer = 'X';
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+                cell.className = 'cell';
+            });
+            playSound('reset');
+        }
+
+        function switchTheme() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            document.body.className = themes[currentTheme];
+            playSound('click');
+        }
+
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            const frequencies = {
+                click: 440,
+                win: 880,
+                draw: 220,
+                reset: 660
+            };
+
+            oscillator.frequency.setValueAtTime(frequencies[type], audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 100);
+        }
+
+        initBoard();
+    </script>
+</body>
+</html>
