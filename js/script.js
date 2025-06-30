@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Typewriter Effect
     const typedText = document.getElementById('typed-text');
     const texts = [
-        'Machine Learning Enthusiast',
         'Data Scientist',
+        'Machine Learning Enthusiast',
         'Tech Evangelist'
     ];
     let index = 0;
